@@ -9,13 +9,22 @@ const VoiceResponse = require('twilio').twiml.VoiceResponse;
 const clients = new Map();
 const callIds = new Map();
 
+// Middleware para manejar tiempos de espera
+app.use((req, res, next) => {
+    res.setTimeout(30000, () => {
+        console.log('Request has timed out.');
+        res.sendStatus(408);
+    });
+    next();
+});
+
 function generateClientId() {
     return Math.random().toString(36).substr(2, 9);
 }
 
 function sleep(ms = 1000) {
     return new Promise(resolve => setTimeout(resolve, ms));
-};
+}
 
 // Manejo de conexiones de clientes
 app.ws('/', (ws, req) => {
