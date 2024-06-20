@@ -1,7 +1,7 @@
 {
   "name": "otp-app",
   "version": "1.0.0",
-  "description": "OTP Node.js application",
+  "description": "OTP Node.js application with WebSocket",
   "main": "otp.js",
   "scripts": {
     "start": "node otp.js"
